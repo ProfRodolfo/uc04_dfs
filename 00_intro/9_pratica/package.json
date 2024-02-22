@@ -1,0 +1,14 @@
+{
+  "name": "9_pratica",
+  "version": "1.0.0",
+  "description": "arquivo de pratica",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rodolfo",
+  "license": "ISC",
+  "dependencies": {
+    "minimist": "^1.2.8"
+  }
+}

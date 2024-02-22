@@ -1,0 +1,14 @@
+{
+  "name": "8_ler_arg_modulo",
+  "version": "1.0.0",
+  "description": "meu primeiro package.json",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Rodolfo",
+  "license": "ISC",
+  "dependencies": {
+    "minimist": "^1.2.8"
+  }
+}
