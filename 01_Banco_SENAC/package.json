@@ -1,0 +1,21 @@
+{
+  "name": "01_banco_senac",
+  "version": "1.0.0",
+  "description": "Projeto console do banco SENAC",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Banco",
+    "Depósito",
+    "Saque"
+  ],
+  "author": "Rodolfo",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "inquirer": "^8.1.2"
+  }
+}
