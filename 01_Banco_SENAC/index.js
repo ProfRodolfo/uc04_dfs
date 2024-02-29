@@ -28,7 +28,17 @@ function operation() {
 
       if (action === 'Criar conta') {
         createAccount()
+      }else if (action === 'Depositar'){
+        deposit()   
+      }else if (action === 'Consultar Saldo'){
+        getAccountBalace()
+      }else if (action === 'Sacar'){
+        withdraw()
+      }else if (action === 'Sair'){
+        console.log(chalk.bgBlue.black('Obrigado por usar o SENAC Bank'))
+        process.exit()
       }
+
     })
     .catch((err) => console.log(err))
 }
@@ -81,3 +91,31 @@ function buildAccount() {
     .catch ((err) => console.log(err))
   } 
   
+
+  //ad an amount to user account
+
+  function deposit(){
+    inquirer
+        .prompt([
+            {
+                name: 'accountName',
+                message: 'Qual o nome da sua conta?',
+            }
+        ])
+        .then((answer) => {
+            const accountName = answer['accountName']
+            
+            if(!checkAccount(accountName)) {
+                return deposit()
+            }
+        })
+  }
+
+  // verifica se conta existe
+  function checkAccount(accountName){
+    if(!fs.existsSync(`accounts/${accountName}.json`)){
+        console.log(chalk.bgRed.black('Esta conta não exite, escolha outra nome!'))
+        return false
+    }
+    return true
+  }
