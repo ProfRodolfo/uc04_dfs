@@ -16,6 +16,7 @@ app.use(
 )
 
 app.use(express.json())
+app.use(express.static('public'))
 
 var checkAuth = function (req, res, next) {
   req.authStatus = true
