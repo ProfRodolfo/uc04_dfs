@@ -12,9 +12,9 @@ app.get('/', function(req, res) {
         name: 'Rodolfo',
         surname: 'Gonçalves'
     }
-    const work = 'Programador'
+
     
-    res.render('home', {user: user, work} )
+    res.render('home', {user: user} )
 })
 
 app.listen(3000)
