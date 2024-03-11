@@ -12,9 +12,12 @@ app.get('/', function(req, res) {
         name: 'Rodolfo',
         surname: 'Gonçalves'
     }
-
     
-    res.render('home', {user: user} )
+    res.render('home', {user: user, auth: true} )
 })
+
+app.get("/dashboard", function(req, res) {
+    res.render("dashboard");
+});
 
 app.listen(3000)
