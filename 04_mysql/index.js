@@ -72,18 +72,14 @@ app.get('/books/:id', function (req, res) {
 
 app.get('/books/edit/:id', function (req, res) {
   const id = req.params.id
-
   const query = `SELECT * FROM books WHERE id = ${id}`
 
   conn.query(query, function (err, data) {
     if (err) {
       console.log(err)
     }
-
     const book = data[0]
-
     console.log(data[0])
-
     res.render('editbook', { book })
   })
 })
@@ -101,6 +97,20 @@ app.post('/books/updatebook', function (req, res) {
     }
 
     res.redirect(`/books/edit/${id}`)
+  })
+})
+
+app.post('/books/remove/:id', function (req, res) {
+  const id = req.params.id
+
+  const query = `DELETE FROM books WHERE id = ${id}`
+
+  conn.query(query, function (err) {
+    if (err) {
+      console.log(err)
+    }
+
+    res.redirect(`/books`)
   })
 })
 
