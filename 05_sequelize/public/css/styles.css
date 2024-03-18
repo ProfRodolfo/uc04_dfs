@@ -53,3 +53,21 @@
     margin-bottom: 0.3em;
   }
   
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 10px;
+  }
+  
+  .container .item {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 20px;
+    flex: 1 1 29%;
+    max-width: 29%;
+    height: 75px;
+  }
+  
