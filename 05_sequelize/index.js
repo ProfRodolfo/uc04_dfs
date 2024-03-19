@@ -78,6 +78,22 @@ app.post('/users/delete/:id', function (req, res){
     .catch((err) => console.log(err))
 })
 
+app.get('/users/edit/:id', function (req, res){
+  const id = req.params.id
+
+  User.findOne({
+    raw: true,
+    where: {
+      id: id,
+    },
+  })
+    .then((user) =>{
+      console.log(user)
+      res.render('useredit', {user})
+    })
+    .catch((err) => console.log(err))
+})
+
 // Criar tabelas e rodar o app
 conn
   .sync()
