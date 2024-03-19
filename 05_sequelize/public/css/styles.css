@@ -68,6 +68,38 @@
     padding: 20px;
     flex: 1 1 29%;
     max-width: 29%;
-    height: 75px;
+    /* height: 75px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
   }
   
+.container .item h2,
+.container .item p {
+  margin-bottom: 0.8em;
+}
+
+.actions {
+  display: flex;
+  justify-content: space-between;
+}
+.actions a,
+.actions input {
+  border: 1px solid #bbb;
+  border-radius: 5px;
+  text-decoration: none;
+  background-color: #fff;
+  padding: 5px;
+  font-size: 15px;
+  color: #000;
+  cursor: pointer;
+}
+.actions .details-btn {
+  border-color: #004085;
+  color: #004085;
+}
+.actions .delete-btn {
+  border-color: #721c24;
+  color: #721c24;
+}
+

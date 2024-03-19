@@ -48,6 +48,36 @@ app.post('/users/create', function (req, res) {
   res.redirect('/')
 })
 
+app.get('/users/:id', function(req, res){
+  const id = req.params.id
+
+  User.findOne({
+    raw: true,
+    where: {
+      id: id,
+    }
+  })
+    .then((user) => {
+      console.log(user)
+      res.render('userview', {user})
+    })
+    .catch((err) => console.log(err))
+})
+
+app.post('/users/delete/:id', function (req, res){
+  const id = req.params.id
+
+  User.destroy({
+    where: {
+      id: id,
+    },
+  })
+    .then((user) =>{
+      res.redirect('/')
+    })
+    .catch((err) => console.log(err))
+})
+
 // Criar tabelas e rodar o app
 conn
   .sync()
