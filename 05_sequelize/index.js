@@ -21,11 +21,10 @@ app.use(express.json())
 app.use(express.static('public'))
 
 app.get('/', function (req, res) {
-
-  User.findAll({raw: true})
+  User.findAll({ raw: true })
     .then((users) => {
       console.log(users)
-      res.render('home', {users: users})
+      res.render('home', { users: users })
     })
     .catch((err) => console.log(err))
 })
@@ -44,27 +43,27 @@ app.post('/users/create', function (req, res) {
   }
 
   User.create({ name, occupation, newsletter })
-
-  res.redirect('/')
+    .then(res.redirect('/'))
+    .catch((err) => console.log(err))
 })
 
-app.get('/users/:id', function(req, res){
+app.get('/users/:id', function (req, res) {
   const id = req.params.id
 
   User.findOne({
     raw: true,
     where: {
       id: id,
-    }
+    },
   })
     .then((user) => {
       console.log(user)
-      res.render('userview', {user})
+      res.render('userview', { user })
     })
     .catch((err) => console.log(err))
 })
 
-app.post('/users/delete/:id', function (req, res){
+app.post('/users/delete/:id', function (req, res) {
   const id = req.params.id
 
   User.destroy({
@@ -72,13 +71,13 @@ app.post('/users/delete/:id', function (req, res){
       id: id,
     },
   })
-    .then((user) =>{
+    .then((user) => {
       res.redirect('/')
     })
     .catch((err) => console.log(err))
 })
 
-app.get('/users/edit/:id', function (req, res){
+app.get('/users/edit/:id', function (req, res) {
   const id = req.params.id
 
   User.findOne({
@@ -87,9 +86,43 @@ app.get('/users/edit/:id', function (req, res){
       id: id,
     },
   })
-    .then((user) =>{
+    .then((user) => {
       console.log(user)
-      res.render('useredit', {user})
+      res.render('useredit', { user })
+    })
+    .catch((err) => console.log(err))
+})
+
+app.post('/users/update', function (req, res) {
+  const id = req.body.id
+  const name = req.body.name
+  const occupation = req.body.occupation
+  let newsletter = req.body.newsletter
+
+  if (newsletter === 'on') {
+    newsletter = true
+  } else {
+    newsletter = false
+  }
+
+  const userData = {
+    id,
+    name,
+    occupation,
+    newsletter,
+  }
+
+  console.log(req.body)
+  console.log(userData)
+
+  User.update(userData, {
+    where: {
+      id: id,
+    },
+  })
+    .then((user) => {
+      console.log(user)
+      res.redirect('/')
     })
     .catch((err) => console.log(err))
 })
