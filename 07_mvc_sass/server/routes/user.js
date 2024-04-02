@@ -12,3 +12,4 @@ router.get('/:id', userController.delete)
 
 
 module.exports = router
+
