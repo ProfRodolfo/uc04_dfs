@@ -72,7 +72,7 @@ exports.update = (req, res) => {
   const { first_name, last_name, email, phone, comments } = req.body;
   connection.query('UPDATE user SET first_name = ?, last_name = ?, email = ?, phone = ?, comments = ? WHERE id = ?', [first_name, last_name, email, phone, comments, req.params.id], (err, rows) => {
     if (!err) {
-      connection.query('SELECT * FROM user WHERE id = ?', [req.params.id], (err, rows) => {      
+      connection.query('SELECT * FROM user WHERE id = ?', [req.params.id], (err, rows) => {
         if (!err) {
           res.render('edit-user', { rows, alert: `${first_name} has been updated.` });
         } else {
@@ -96,5 +96,16 @@ exports.delete = (req, res) => {
       console.log(err);
     }
     console.log('The data from beer table are: \n', rows);
+  });
+}
+
+exports.viewall = (req, res) => {
+  connection.query('SELECT * FROM user WHERE id=?', [req.params.id], (err, rows) => {
+    if (!err) {
+      res.render('view-user', { rows })
+    } else {
+      console.log(err);
+    }
+    console.log('The data from user table: \n', rows);
   });
 }
